@@ -31,7 +31,13 @@ class _StorybookFlutterTabState extends State<StorybookFlutterTab> {
               child: ToggleButtons(
                 children: fruits,
                 isSelected: _selectedFruits,
-                borderRadius: const BorderRadius.all(Radius.circular(8)),
+                borderRadius:
+                    BorderRadius.all(Radius.circular(context.knobs.slider(
+                  label: 'Border Radius',
+                  min: 0,
+                  max: 100,
+                  initial: 8,
+                ))),
                 // selectedBorderColor: Colors.red[700],
                 selectedColor: Colors.white,
                 fillColor: context.knobs.options(
@@ -43,17 +49,14 @@ class _StorybookFlutterTabState extends State<StorybookFlutterTab> {
                     Option(label: 'Blue', value: Colors.blue),
                   ],
                 ),
-                // fillColor: context.knobs.options(
-                //   label: 'Selected Color',
-                //   options: <Option<Color?>>[
-                //     Option(label: 'Red', value: Colors.red),
-                //     Option(label: 'Green', value: Colors.green),
-                //     Option(label: 'Blue', value: Colors.blue),
-                //   ],
-                // ),
                 color: Colors.red[400],
-                constraints: const BoxConstraints(
-                  minHeight: 40.0,
+                constraints: BoxConstraints(
+                  minHeight: context.knobs.slider(
+                    label: 'min height',
+                    initial: 40,
+                    min: 30,
+                    max: 50,
+                  ),
                   minWidth: 80.0,
                 ),
                 onPressed: (int index) {

@@ -29,7 +29,13 @@ class _WidgetbookTabState extends State<WidgetbookTab> {
                     child: ToggleButtons(
                       children: fruits,
                       isSelected: _selectedFruits,
-                      borderRadius: const BorderRadius.all(Radius.circular(8)),
+                      borderRadius:
+                          BorderRadius.all(Radius.circular(context.knobs.slider(
+                        label: 'Border Radius',
+                        min: 0,
+                        max: 100,
+                        initialValue: 8,
+                      ))),
                       // selectedBorderColor: Colors.red[700],
                       selectedColor: Colors.white,
                       fillColor: context.knobs.options(
@@ -41,8 +47,13 @@ class _WidgetbookTabState extends State<WidgetbookTab> {
                         ],
                       ),
                       color: Colors.red[400],
-                      constraints: const BoxConstraints(
-                        minHeight: 40.0,
+                      constraints: BoxConstraints(
+                        minHeight: context.knobs.slider(
+                          label: 'min height',
+                          initialValue: 40,
+                          min: 30,
+                          max: 50,
+                        ),
                         minWidth: 80.0,
                       ),
                       onPressed: (int index) {
