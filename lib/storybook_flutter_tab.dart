@@ -9,14 +9,63 @@ final _plugins = initializePlugins(
   ),
 );
 
-class StorybookFlutterTab extends StatelessWidget {
+class StorybookFlutterTab extends StatefulWidget {
   const StorybookFlutterTab({super.key});
+
+  @override
+  State<StorybookFlutterTab> createState() => _StorybookFlutterTabState();
+}
+
+class _StorybookFlutterTabState extends State<StorybookFlutterTab> {
+  final fruits = <Widget>[Text('Apple'), Text('Banana'), Text('Orange')];
+  final List<bool> _selectedFruits = <bool>[true, false, false];
 
   @override
   Widget build(BuildContext context) => Storybook(
         initialStory: 'Screens/Scaffold',
         plugins: _plugins,
         stories: [
+          Story(
+            name: 'ToggleButtons',
+            builder: (context) => Center(
+              child: ToggleButtons(
+                children: fruits,
+                isSelected: _selectedFruits,
+                borderRadius: const BorderRadius.all(Radius.circular(8)),
+                // selectedBorderColor: Colors.red[700],
+                selectedColor: Colors.white,
+                fillColor: context.knobs.options(
+                  label: 'Selected Color',
+                  initial: Colors.red,
+                  options: [
+                    Option(label: 'Red', value: Colors.red),
+                    Option(label: 'Green', value: Colors.green),
+                    Option(label: 'Blue', value: Colors.blue),
+                  ],
+                ),
+                // fillColor: context.knobs.options(
+                //   label: 'Selected Color',
+                //   options: <Option<Color?>>[
+                //     Option(label: 'Red', value: Colors.red),
+                //     Option(label: 'Green', value: Colors.green),
+                //     Option(label: 'Blue', value: Colors.blue),
+                //   ],
+                // ),
+                color: Colors.red[400],
+                constraints: const BoxConstraints(
+                  minHeight: 40.0,
+                  minWidth: 80.0,
+                ),
+                onPressed: (int index) {
+                  setState(() {
+                    for (int i = 0; i < _selectedFruits.length; i++) {
+                      _selectedFruits[i] = i == index;
+                    }
+                  });
+                },
+              ),
+            ),
+          ),
           Story(
             name: 'Screens/Scaffold',
             description: 'Story with scaffold and different knobs.',

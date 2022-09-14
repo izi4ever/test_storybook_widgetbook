@@ -15,9 +15,9 @@ class _BottomBarState extends State<BottomBar> {
   Widget _pageOptions(int tabIndex) {
     switch (tabIndex) {
       case 0:
-        return const StorybookFlutterTab();
+        return StorybookFlutterTab();
       case 1:
-        return const WidgetbookTab();
+        return WidgetbookTab();
       default:
         return const Text('No such page');
     }
