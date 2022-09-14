@@ -52,7 +52,7 @@ class _StorybookFlutterTabState extends State<StorybookFlutterTab> {
                 color: Colors.red[400],
                 constraints: BoxConstraints(
                   minHeight: context.knobs.slider(
-                    label: 'min height',
+                    label: 'Min Height',
                     initial: 40,
                     min: 30,
                     max: 50,
